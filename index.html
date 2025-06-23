@@ -70,7 +70,6 @@
 <body>
   <div class="content">
     <h1 style="text-align:center">US West Roadtrip: 9/30 (Sat) – 10/7 (Sat)</h1>
-
     <div class="day-section">
       <h2>Day 1 – Sep 30 (Sat): Arrival in Los Angeles</h2>
       <ul>
@@ -83,35 +82,6 @@
         <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/312101210.jpg" alt="InterContinental LA">
       </div>
     </div>
-
-    <div class="day-section">
-      <h2>Day 4 – Oct 3 (Tue): Zion → Bryce Canyon → Page</h2>
-      <ul>
-        <li>入住 Amangiri 豪华酒店（需提前预订）</li>
-        <li>备选：Lake Powell Resort、Hyatt Place Page 或 Under Canvas</li>
-      </ul>
-      <div class="hotel">
-        推荐酒店：Amangiri<br>
-        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/244314976.jpg" alt="Amangiri Hotel">
-      </div>
-    </div>
-
-    <div class="day-section">
-      <h2>Day 5 – Oct 4 (Wed): Lake Powell & Antelope Canyon</h2>
-      <ul>
-        <li>07:30 早餐后前往 Wahweap Marina</li>
-        <li>08:00–10:30 租小型动力艇探索 Lake Powell 峡谷湖泊（可选导游）</li>
-        <li>11:30 抵达羚羊谷入口，准备参团 Upper Antelope Canyon</li>
-        <li>12:00–13:00 羚羊谷摄影团</li>
-        <li>14:00 午餐于 Page 镇餐厅（推荐：Bonkers 或 El Tapatio）</li>
-        <li>16:00–17:00 前往 Horseshoe Bend 看日落</li>
-        <li>18:30 返回酒店，晚餐 & 休息</li>
-      </ul>
-      <div class="hotel">
-        推荐酒店：Hyatt Place Page<br>
-        <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/194663905.jpg" alt="Hyatt Page">
-      </div>
-    </div>
   </div>
 
   <div id="map-container">
@@ -119,10 +89,97 @@
     <div id="map"></div>
   </div>
 
-  <!-- Google Map JavaScript remains unchanged -->
   <script>
-    // 地图代码与按钮控制保持不变
+    const itinerary = {
+      'Brief': [
+        "Los Angeles Airport", "Elmer’s Bottle Tree Ranch", "Calico Ghost Town", "Peggy Sue’s 50s Diner",
+        "Seven Magic Mountains", "Las Vegas Sphere / Venetian", "Zion National Park Visitor Center",
+        "The Narrows Trailhead", "Angel’s Landing Trailhead", "Bryce Canyon Visitor Center", "Navajo Loop Trail",
+        "Amangiri Resort", "Lake Powell (Wahweap Marina)", "Antelope Canyon Upper", "Horseshoe Bend",
+        "Grand Canyon South Rim (Desert View)", "Death Valley Zabriskie Point", "Badwater Basin",
+        "Sequoia General Sherman Tree", "Moro Rock", "Los Angeles Griffith Observatory", "Santa Monica Pier"
+      ],
+      'Day 1': ["Los Angeles Airport"],
+      'Day 2': ["Elmer’s Bottle Tree Ranch", "Calico Ghost Town", "Peggy Sue’s 50s Diner", "Seven Magic Mountains", "Las Vegas Sphere / Venetian"],
+      'Day 3': ["Zion National Park Visitor Center", "The Narrows Trailhead", "Angel’s Landing Trailhead"],
+      'Day 4': ["Bryce Canyon Visitor Center", "Navajo Loop Trail", "Amangiri Resort"],
+      'Day 5': ["Lake Powell (Wahweap Marina)", "Antelope Canyon Upper", "Horseshoe Bend"],
+      'Day 6': ["Grand Canyon South Rim (Desert View)", "Death Valley Zabriskie Point", "Badwater Basin"],
+      'Day 7': ["Sequoia General Sherman Tree", "Moro Rock"],
+      'Day 8': ["Los Angeles Griffith Observatory", "Santa Monica Pier"]
+    };
+
+    const allLocations = [
+      ["Los Angeles Airport", 33.9416, -118.4085],
+      ["Elmer’s Bottle Tree Ranch", 34.8559, -116.4711],
+      ["Calico Ghost Town", 34.9488, -117.3080],
+      ["Peggy Sue’s 50s Diner", 34.9482, -117.3010],
+      ["Seven Magic Mountains", 35.9934, -115.1442],
+      ["Las Vegas Sphere / Venetian", 36.1126, -115.1745],
+      ["Zion National Park Visitor Center", 37.2982, -113.0263],
+      ["The Narrows Trailhead", 37.2992, -112.9470],
+      ["Angel’s Landing Trailhead", 37.2693, -112.9507],
+      ["Bryce Canyon Visitor Center", 37.5872, -112.1871],
+      ["Navajo Loop Trail", 37.5832, -112.1870],
+      ["Amangiri Resort", 37.0784, -110.7218],
+      ["Lake Powell (Wahweap Marina)", 37.2624, -111.3015],
+      ["Antelope Canyon Upper", 36.8619, -111.3743],
+      ["Horseshoe Bend", 36.8791, -111.5100],
+      ["Grand Canyon South Rim (Desert View)", 36.0480, -111.4530],
+      ["Death Valley Zabriskie Point", 36.4207, -116.8110],
+      ["Badwater Basin", 36.2504, -116.8258],
+      ["Sequoia General Sherman Tree", 36.5818, -118.7516],
+      ["Moro Rock", 36.5449, -118.7675],
+      ["Los Angeles Griffith Observatory", 34.1184, -118.3004],
+      ["Santa Monica Pier", 34.0094, -118.4973]
+    ];
+
+    let map;
+    let markers = [];
+    let currentButton = null;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 6,
+        center: { lat: 36.1, lng: -115 },
+      });
+
+      const controls = document.getElementById("controls");
+      for (const day in itinerary) {
+        const btn = document.createElement("button");
+        btn.textContent = day;
+        btn.onclick = () => showMarkersForDay(day, btn);
+        controls.appendChild(btn);
+      }
+
+      const firstButton = controls.querySelector("button");
+      showMarkersForDay("Day 1", firstButton);
+    }
+
+    function showMarkersForDay(day, button) {
+      if (currentButton) currentButton.classList.remove("active");
+      if (button) button.classList.add("active");
+      currentButton = button;
+
+      markers.forEach(marker => marker.setMap(null));
+      markers = [];
+
+      const bounds = new google.maps.LatLngBounds();
+      const locationsForDay = itinerary[day];
+      allLocations.forEach(([name, lat, lng]) => {
+        if (locationsForDay.includes(name)) {
+          const position = { lat, lng };
+          const marker = new google.maps.Marker({ position, map, title: name });
+          const info = new google.maps.InfoWindow({ content: name });
+          marker.addListener("click", () => info.open(map, marker));
+          markers.push(marker);
+          bounds.extend(position);
+        }
+      });
+
+      if (!bounds.isEmpty()) map.fitBounds(bounds);
+    }
   </script>
-  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyoWsTVlWNoe7ZSiD3Xrka4f1Ve5Odwjc&callback=initMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyoWsTVlWNoe7ZSiD3Xrka4f1Ve5Odwjc&callback=initMap"></script>
 </body>
 </html>
