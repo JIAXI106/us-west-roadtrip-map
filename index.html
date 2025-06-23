@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>US West Roadtrip Map</title>
+  <style>
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    function initMap() {
+      const locations = [
+        ["Los Angeles Airport", 33.9416, -118.4085],
+        ["Elmer’s Bottle Tree Ranch", 34.8559, -116.4711],
+        ["Calico Ghost Town", 34.9488, -117.3080],
+        ["Peggy Sue’s 50s Diner", 34.9482, -117.3010],
+        ["Zzyzx Road Sign", 35.1449, -116.1040],
+        ["Alien Fresh Jerky", 35.2656, -116.0724],
+        ["Seven Magic Mountains", 35.9934, -115.1442],
+        ["Las Vegas Sphere / Venetian", 36.1126, -115.1745],
+        ["Zion National Park Visitor Center", 37.2982, -113.0263],
+        ["The Narrows Trailhead", 37.2992, -112.9470],
+        ["Angel’s Landing Trailhead", 37.2693, -112.9507],
+        ["Observation Point Trailhead", 37.2704, -112.9665],
+        ["Bryce Canyon Visitor Center", 37.5872, -112.1871],
+        ["Navajo Loop Trail", 37.5832, -112.1870],
+        ["Amangiri Resort", 37.0784, -110.7218],
+        ["Lake Powell (Wahweap Marina)", 37.2624, -111.3015],
+        ["Antelope Canyon Upper", 36.8619, -111.3743],
+        ["Horseshoe Bend", 36.8791, -111.5100],
+        ["Grand Canyon South Rim (Desert View)", 36.0480, -111.4530],
+        ["Death Valley Zabriskie Point", 36.4207, -116.8110],
+        ["Badwater Basin", 36.2504, -116.8258],
+        ["Mojave Joshua Trees (optional)", 35.0114, -115.4736],
+        ["Sequoia General Sherman Tree", 36.5818, -118.7516],
+        ["Moro Rock", 36.5449, -118.7675],
+        ["Los Angeles Griffith Observatory", 34.1184, -118.3004],
+        ["Santa Monica Pier", 34.0094, -118.4973]
+      ];
+
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 6,
+        center: { lat: 36.1, lng: -115 },
+      });
+
+      locations.forEach(([name, lat, lng]) => {
+        new google.maps.Marker({
+          position: { lat, lng },
+          map,
+          title: name,
+        });
+      });
+    }
+  </script>
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+  </script>
+</body>
+</html>
