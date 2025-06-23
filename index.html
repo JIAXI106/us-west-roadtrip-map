@@ -8,14 +8,18 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
     }
-    #map {
-      height: 400px;
-      width: 100%;
+    .content {
+      width: 50%;
+      overflow-y: auto;
+      padding: 20px;
+      box-sizing: border-box;
     }
     .day-section {
-      padding: 20px;
-      border-bottom: 1px solid #ddd;
+      margin-bottom: 30px;
     }
     .day-section img {
       width: 100%;
@@ -23,44 +27,51 @@
       display: block;
       margin: 10px 0;
     }
+    #map {
+      width: 50%;
+      height: 100vh;
+    }
   </style>
 </head>
 <body>
-  <h1 style="text-align:center">US West Roadtrip - 7 Days</h1>
-  <div id="map"></div>
+  <div class="content">
+    <h1 style="text-align:center">US West Roadtrip - 7 Days</h1>
 
-  <div class="day-section">
-    <h2>Day 1: Los Angeles → Las Vegas</h2>
-    <p>沿途打卡 Bottle Tree Ranch、Calico 鬼镇、Seven Magic Mountains，晚上抵达 Vegas 看 Sphere。</p>
-    <img src="https://tse1.mm.bing.net/th?id=OIP.BY6UQQwKi-Xo66k-jz2FfQHaE8&pid=Api" alt="Sphere in Vegas">
+    <div class="day-section">
+      <h2>Day 1: Los Angeles → Las Vegas</h2>
+      <p>沿途打卡 Bottle Tree Ranch、Calico 鬼镇、Seven Magic Mountains，晚上抵达 Vegas 看 Sphere。</p>
+      <img src="https://tse1.mm.bing.net/th?id=OIP.BY6UQQwKi-Xo66k-jz2FfQHaE8&pid=Api" alt="Sphere in Vegas">
+    </div>
+    <div class="day-section">
+      <h2>Day 2: Las Vegas → Zion National Park</h2>
+      <p>体验 Zion The Narrows、Scout Lookout，住在 Springdale 小镇。</p>
+      <img src="https://tse4.mm.bing.net/th?id=OIP.mfgEo-n2bVGZJVWCUrXkOAHaLF&r=0&pid=Api" alt="The Narrows in Zion">
+    </div>
+    <div class="day-section">
+      <h2>Day 3: Zion → Bryce Canyon → Page</h2>
+      <p>游 Bryce 红岩林，晚上前往 Page 或 Amangiri。</p>
+      <img src="https://tse2.mm.bing.net/th?id=OIP.Q9OKH-c-DZjqkn1b-W_YSAHaE7&pid=Api" alt="Bryce Canyon">
+    </div>
+    <div class="day-section">
+      <h2>Day 4: Lake Powell & Antelope Canyon</h2>
+      <p>上午皮划艇巡游 Lake Powell，下午游羚羊谷与马蹄湾。</p>
+      <img src="https://tse4.mm.bing.net/th?id=OIP.vqAB8vzUPxQz9H_ac2U56gHaE8&r=0&pid=Api" alt="Kayaking in Lake Powell">
+    </div>
+    <div class="day-section">
+      <h2>Day 5: Page → Grand Canyon → Death Valley</h2>
+      <p>晨观大峡谷日出，晚上进入死亡谷拍摄星空。</p>
+    </div>
+    <div class="day-section">
+      <h2>Day 6: Death Valley → Sequoia</h2>
+      <p>游 Badwater 盐地、沙丘后穿越 Sierra Nevada，下午抵达巨杉林。</p>
+    </div>
+    <div class="day-section">
+      <h2>Day 7: Sequoia → Los Angeles</h2>
+      <p>登 Moro Rock，返程洛杉矶，可顺路打卡 Griffith 天文台与 Santa Monica 海滩。</p>
+    </div>
   </div>
-  <div class="day-section">
-    <h2>Day 2: Las Vegas → Zion National Park</h2>
-    <p>体验 Zion The Narrows、Scout Lookout，住在 Springdale 小镇。</p>
-    <img src="https://tse4.mm.bing.net/th?id=OIP.mfgEo-n2bVGZJVWCUrXkOAHaLF&r=0&pid=Api" alt="The Narrows in Zion">
-  </div>
-  <div class="day-section">
-    <h2>Day 3: Zion → Bryce Canyon → Page</h2>
-    <p>游 Bryce 红岩林，晚上前往 Page 或 Amangiri。</p>
-    <img src="https://tse2.mm.bing.net/th?id=OIP.Q9OKH-c-DZjqkn1b-W_YSAHaE7&pid=Api" alt="Bryce Canyon">
-  </div>
-  <div class="day-section">
-    <h2>Day 4: Lake Powell & Antelope Canyon</h2>
-    <p>上午皮划艇巡游 Lake Powell，下午游羚羊谷与马蹄湾。</p>
-    <img src="https://tse4.mm.bing.net/th?id=OIP.vqAB8vzUPxQz9H_ac2U56gHaE8&r=0&pid=Api" alt="Kayaking in Lake Powell">
-  </div>
-  <div class="day-section">
-    <h2>Day 5: Page → Grand Canyon → Death Valley</h2>
-    <p>晨观大峡谷日出，晚上进入死亡谷拍摄星空。</p>
-  </div>
-  <div class="day-section">
-    <h2>Day 6: Death Valley → Sequoia</h2>
-    <p>游 Badwater 盐地、沙丘后穿越 Sierra Nevada，下午抵达巨杉林。</p>
-  </div>
-  <div class="day-section">
-    <h2>Day 7: Sequoia → Los Angeles</h2>
-    <p>登 Moro Rock，返程洛杉矶，可顺路打卡 Griffith 天文台与 Santa Monica 海滩。</p>
-  </div>
+
+  <div id="map"></div>
 
   <script>
     function initMap() {
