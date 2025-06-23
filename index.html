@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>US West Roadtrip Itinerary</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
+      margin: 0;
       display: flex;
-      flex-direction: row;
-      height: 100vh;
+      flex-direction: column;
     }
     .content {
-      flex: 1;
-      overflow-y: auto;
       padding: 20px;
-      box-sizing: border-box;
       scroll-behavior: smooth;
     }
     .day-section {
@@ -24,68 +20,16 @@
     }
     .day-section img {
       width: 100%;
-      max-width: 500px;
+      max-width: 600px;
       display: block;
-      margin: 10px 0;
-    }
-    #map-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-    #controls {
-      padding: 10px;
-      overflow-x: auto;
-      background: #f7f7f7;
-      border-bottom: 1px solid #ddd;
-      white-space: nowrap;
-    }
-    #controls button {
-      margin-right: 8px;
-      padding: 6px 12px;
-      border: 1px solid #ccc;
-      background: #fff;
-      cursor: pointer;
-    }
-    #controls button.active {
-      background-color: #4285F4;
-      color: white;
-      border-color: #4285F4;
-    }
-    #map {
-      flex: 1;
-    }
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-      #map-container {
-        order: -1;
-        height: 300px;
-      }
-      #map {
-        height: 100%;
-      }
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <div class="content">
-    <h1 style="text-align:center">US West Roadtrip: 9/30 (Sat) – 10/7 (Sat)</h1>
-    <div class="day-section" id="brief">
-      <h2>Brief Overview</h2>
-      <ul>
-        <li>Day 1: 抵达洛杉矶，市区晚餐，入住酒店</li>
-        <li>Day 2: 洛杉矶出发，经沿途景点前往拉斯维加斯</li>
-        <li>Day 3: 拉斯维加斯出发前往锡安国家公园，体验徒步</li>
-        <li>Day 4: 锡安 → 布莱斯峡谷 → Page，入住 Amangiri</li>
-        <li>Day 5: Lake Powell 游船、羚羊谷、马蹄湾</li>
-        <li>Day 6: Page → 大峡谷 → 死亡谷</li>
-        <li>Day 7: 死亡谷 → 红杉国家公园 → 洛杉矶</li>
-        <li>Day 8: 早餐后前往 LAX 机场离境</li>
-      </ul>
-    </div>
+    <h1>US West Roadtrip: 9/30 – 10/7</h1>
+
     <div class="day-section" id="day1">
       <h2>Day 1 – Sep 30 (Sat): Arrival in Los Angeles</h2>
       <ul>
@@ -95,71 +39,71 @@
       </ul>
       <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Santa_Monica_Pier_at_dusk.jpg" alt="Santa Monica Pier">
     </div>
+
     <div class="day-section" id="day2">
-      <h2>Day 2 – Oct 1 (Sun): Los Angeles → Las Vegas</h2>
+      <h2>Day 2 – Oct 1 (Sun): Los Angeles → Sequoia National Park</h2>
       <ul>
-        <li>途经 Elmer’s Bottle Tree Ranch、Calico 鬼镇、Peggy Sue’s Diner、Seven Magic Mountains</li>
-        <li>晚上抵达拉斯维加斯，欣赏 Sphere 球幕夜景</li>
+        <li>早晨从洛杉矶出发，约 4.5 小时抵达 Sequoia National Park</li>
+        <li>游览 General Sherman Tree、Moro Rock</li>
+        <li>夜宿 Three Rivers 或公园周边小镇</li>
       </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Seven_Magic_Mountains_in_Nevada.jpg" alt="Seven Magic Mountains">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/General_Sherman_Tree%2C_full_view.jpg" alt="General Sherman Tree">
     </div>
+
     <div class="day-section" id="day3">
-      <h2>Day 3 – Oct 2 (Mon): Las Vegas → Zion</h2>
+      <h2>Day 3 – Oct 2 (Mon): Sequoia → Las Vegas</h2>
       <ul>
-        <li>上午出发，约 2.5 小时车程抵达 Zion</li>
+        <li>早餐后从红杉出发，途经中部高速公路东进前往拉斯维加斯（约6.5小时）</li>
+        <li>傍晚抵达拉斯维加斯，可游览 Sphere 或参加表演</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/The_Sphere_Las_Vegas_Exterior.jpg" alt="Las Vegas Sphere">
+    </div>
+
+    <div class="day-section" id="day4">
+      <h2>Day 4 – Oct 3 (Tue): Las Vegas → Zion National Park</h2>
+      <ul>
+        <li>上午驱车约 2.5 小时抵达 Zion</li>
         <li>徒步 The Narrows 或挑战 Angel's Landing</li>
       </ul>
       <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Zion_Narrows_2.jpg" alt="The Narrows, Zion">
     </div>
-    <div class="day-section" id="day4">
-      <h2>Day 4 – Oct 3 (Tue): Zion → Bryce Canyon → Page</h2>
-      <ul>
-        <li>上午前往布莱斯峡谷国家公园，徒步 Navajo Loop Trail</li>
-        <li>下午抵达 Page，入住 Amangiri 或其他湖景酒店</li>
-      </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Bryce_Canyon_Navajo_Loop_Trail.jpg" alt="Bryce Canyon">
-    </div>
+
     <div class="day-section" id="day5">
-      <h2>Day 5 – Oct 4 (Wed): Lake Powell & Antelope Canyon</h2>
+      <h2>Day 5 – Oct 4 (Wed): Zion → Page (Amangiri)</h2>
       <ul>
-        <li>上午租船游览 Lake Powell 峡谷</li>
+        <li>上午继续游览 Zion（可选 Observation Point）</li>
+        <li>中午出发，约 2.5 小时前往 Amangiri Resort</li>
+        <li>入住 Amangiri，享受日落、温泉与景观</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Amangiri_view.jpg" alt="Amangiri">
+    </div>
+
+    <div class="day-section" id="day6">
+      <h2>Day 6 – Oct 5 (Thu): Lake Powell & Antelope Canyon</h2>
+      <ul>
+        <li>上午从 Amangiri 出发，租船探索 Lake Powell 峡谷湖泊</li>
         <li>下午参观 Upper Antelope Canyon，傍晚前往马蹄湾看日落</li>
+        <li>夜宿 Page 镇或 Amangiri 延住</li>
       </ul>
       <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Antelope_Canyon_viewed_from_inside.jpg" alt="Antelope Canyon">
     </div>
-    <div class="day-section" id="day6">
-      <h2>Day 6 – Oct 5 (Thu): Page → Grand Canyon → Death Valley</h2>
-      <ul>
-        <li>清晨出发，经 Desert View Drive 观赏大峡谷风景</li>
-        <li>下午穿越沙漠进入死亡谷，夜晚观星</li>
-      </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Grand_Canyon_view_from_Desert_View.jpg" alt="Grand Canyon - Desert View">
-    </div>
+
     <div class="day-section" id="day7">
-      <h2>Day 7 – Oct 6 (Fri): Death Valley → Sequoia → LA</h2>
+      <h2>Day 7 – Oct 6 (Fri): Page → Grand Canyon → Los Angeles</h2>
       <ul>
-        <li>上午游览 Zabriskie Point、Badwater Basin</li>
-        <li>下午翻越 Sierra Nevada 抵达红杉国家公园</li>
-        <li>傍晚返回洛杉矶，入住机场酒店</li>
+        <li>早上驱车前往 Grand Canyon South Rim（途经 Desert View）</li>
+        <li>午后离开，傍晚或晚上抵达洛杉矶</li>
+        <li>夜宿洛杉矶机场附近酒店</li>
       </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Zabriskie_Point_Death_Valley.jpg" alt="Zabriskie Point">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Grand_Canyon_view_from_South_Rim.jpg" alt="Grand Canyon South Rim">
     </div>
+
     <div class="day-section" id="day8">
       <h2>Day 8 – Oct 7 (Sat): Departure</h2>
       <ul>
-        <li>早餐后前往机场，10:20 航班离境</li>
+        <li>早餐后前往洛杉矶国际机场，搭乘返程航班</li>
       </ul>
     </div>
   </div>
-
-  <div id="map-container">
-    <div id="controls"></div>
-    <div id="map"></div>
-  </div>
-
-  <script>
-    // JS unchanged but must include scroll-to and button logic to match sections
-  </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyoWsTVlWNoe7ZSiD3Xrka4f1Ve5Odwjc&callback=initMap"></script>
 </body>
 </html>
